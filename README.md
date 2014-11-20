@@ -36,12 +36,11 @@ Directory Structure
             -controllers
             -models
             -services
-            -tests
-            -index.js - Application setup
+            -daemon.js - Single process entry point
+            -index.js - Clustered process entry point
         -v2 - Another application
             ...
     -templates - Used by GrydCLI, removed before project init.
-    -tests - Test runtime, do not change unless needed.
     -.gitignore
     -.gryd - Signals to GrydCLI that this is a GrydScaffold
     -index.js
@@ -52,6 +51,11 @@ Directory Structure
 
 Change Log
 ----
+#### 0.3.0
+>Added daemon file to base application
+>Updated README
+>Version bump to match module
+
 #### 0.2.0
 >Moved core logic to its own module
 >Restructure and rename of project to accommodate new module
