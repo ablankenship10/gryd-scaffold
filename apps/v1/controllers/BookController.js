@@ -1,8 +1,7 @@
+var _ = require('lodash');
+
 var Book = module.exports = function (data) {
-  this.config = data.config;
-  this.app = data.app;
-  this.log = data.log;
-  this.db = data.db;
+  _.extend(this, data);
 
   //define express routes
   this.app.get("/books", this.list.bind(this));
