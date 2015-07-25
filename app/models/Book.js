@@ -5,4 +5,4 @@ var schema = $G("DB").Schema({
 
 schema.set('versionKey', false);
 schema.set('id', false);
-$G("DB").model("Book", schema);
+module.exports = $G("DB").model("Book", schema);

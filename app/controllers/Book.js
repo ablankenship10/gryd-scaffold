@@ -1,4 +1,4 @@
-var Book = $G("Mod").model("Book");
+var Book = $G("Mod").Book;
 
 exports.list = function (req, res) {
   Book.find({}, function (err, books) {
@@ -83,10 +83,10 @@ exports.remove = function (req, res) {
   Book.remove({}, function (err, num) {
     if (err) {
       res.json(err);
-    } else if (num == 0) {
-      res.json({success: false});
-    } else {
+    } else if (num && num.result.n >= 1) {
       res.json({success: true});
+    } else {
+      res.json({success: false});
     }
   });
 };

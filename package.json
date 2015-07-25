@@ -19,6 +19,7 @@
     "url": "https://github.com/ablankenship10/gryd-scaffold.git"
   },
   "dependencies": {
+    "body-parser": "^1.13.2",
     "gryd": "^0.5.0",
     "lodash": "^3.10.0"
   }
