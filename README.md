@@ -20,30 +20,21 @@ Use the GrydCLI to generate a new project
     
     //In project workspace
     gryd-cli init ProjectName
-
-    //CD into project directory. Generate a new application
-    gryd-cli app AppName
-    
-    //Generate a resource
-    gryd-cli resource AppName ResourceName
 ```
 
 Directory Structure
 ----
 ```js
     -app
-        -v1 - An application name
-            -controllers
-            -models
-            -services
-            -daemon.js - Single process entry point
-            -index.js - Clustered process entry point
-        -v2 - Another application
-            ...
+        -config - Application configuration
+        -controllers - Express controller code
+        -models - Database (mongoose) models
+        -services - Middleware + Helper functions
+        -index.js - Routes files
     -templates - Used by GrydCLI, removed before project init.
     -.gitignore
-    -.gryd - Signals to GrydCLI that this is a GrydScaffold
-    -index.js
+    -.gryd - Signals to GrydCLI that this is a Gryd Project
+    -index.js - Main file
     -package.json
     -README.md
     
@@ -51,6 +42,13 @@ Directory Structure
 
 Change Log
 ----
+#### 0.5.0
+>Updated to Gryd version 0.5.0, not backward compatible
+>Major rewrite, removed some hacked together features including built in clustering, daemon file
+>New method of calling global Gryd functions and objects
+>Single application structure
+>No more dealing with `this` context
+
 #### 0.3.0
 >Added daemon file to base application
 >Updated README

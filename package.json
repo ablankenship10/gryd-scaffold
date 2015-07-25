@@ -1,6 +1,6 @@
 {
   "name": "gryd-scaffold",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "description": "Simple REST API starter project",
   "keywords": [
     "gryd",
@@ -9,7 +9,6 @@
     "express",
     "framework",
     "mongoose",
-    "mean",
     "bunyan"
   ],
   "main": "index.js",
@@ -20,7 +19,7 @@
     "url": "https://github.com/ablankenship10/gryd-scaffold.git"
   },
   "dependencies": {
-    "gryd": "^0.3.0",
-    "lodash": "^3.5.0"
+    "gryd": "^0.5.0",
+    "lodash": "^3.10.0"
   }
 }

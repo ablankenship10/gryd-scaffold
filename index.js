@@ -1,1 +1,1 @@
-require('gryd')(__dirname + '/apps');
+require('gryd')(__dirname + '/app');
