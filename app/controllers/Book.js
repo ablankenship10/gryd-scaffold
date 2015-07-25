@@ -80,7 +80,7 @@ exports.update = function (req, res) {
 
 exports.remove = function (req, res) {
   var id = req.params['id'];
-  Book.remove({}, function (err, num) {
+  Book.remove({id:id}, function (err, num) {
     if (err) {
       res.json(err);
     } else if (num && num.result.n >= 1) {
