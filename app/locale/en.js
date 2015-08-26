@@ -17,6 +17,10 @@ module.exports = {
   },
   'E004': {
     statusCode: 404,
-    message: "The resource requested does not exist"
+    message: "The location requested does not exist"
+  },
+  'E005': {
+    statusCode: 404,
+    message: "The resource requested was not found"
   }
 };

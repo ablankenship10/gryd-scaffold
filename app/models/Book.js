@@ -1,4 +1,4 @@
-var schema = $G("DB").Schema({
+var schema     = $G("DB").Schema({
   id: {type: String, unique: true},
   title: {type: String, required: true}
 });

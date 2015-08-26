@@ -1,6 +1,6 @@
 {
   "name": "gryd-scaffold",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Simple REST API starter project",
   "keywords": [
     "gryd",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "body-parser": "^1.13.2",
-    "gryd": "^0.5.2",
+    "gryd": "^0.5.4",
     "locale": "0.0.20",
     "lodash": "^3.10.0"
   }

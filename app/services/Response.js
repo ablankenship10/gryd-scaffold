@@ -18,8 +18,8 @@ exports.failure = function (code, obj) {
   this.status(status).json(output);
 };
 
-exports.mFailure = function(obj){
-  switch(obj.code){
+exports.mFailure = function (obj) {
+  switch (obj.code) {
     case 11000:
       this.failure("E010");
       break;

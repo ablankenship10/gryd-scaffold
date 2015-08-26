@@ -1,93 +1,100 @@
 var <%=names.capSingle %> = $G("Mod").<%=names.capSingle %>;
 <% if(opts.list) {%>
-exports.list = function (req, res) {
-    <%=names.capSingle %>.find({}, function (err, <%=names.lowPlural %>) {
-        if (err) {
-            res.json([]);
-        } else {
-            res.json(<%=names.lowPlural %>);
-        }
-    });
-};
+/* List */
+router.get('/', function (req, res) {
+  <%=names.capSingle %>.find({}, function (err, <%=names.lowPlural %>) {
+    if (err) {
+      res.mFailure(err);
+    } else {
+      res.success(<%=names.lowPlural %>);
+    }
+  });
+});
 <% } if(opts.show) {%>
-exports.show = function (req, res) {
-    var id = req.params['id'];
-    <%=names.capSingle %>.findOne({id: id}, function (err, <%=names.lowSingle %>) {
-        if (err) {
-            res.json({});
-        } else {
-            res.json(<%=names.lowSingle %>);
-        }
-    });
-};
+/* Show */
+router.get('/:id', function (req, res) {
+  var id = req.params['id'];
+  <%=names.capSingle %>.findOne({id: id}, function (err, <%=names.lowSingle %>) {
+    if (err) {
+      res.mFailure(err);
+    } else if(<%=names.lowSingle %>) {
+      res.success(<%=names.lowSingle %>);
+    } else {
+      res.failure('E005');
+    }
+  });
+});
 <% } if(opts.create) {%>
-exports.create = function (req, res) {
-    var body  = req.body;
-    var rules = {
-        id: ['required'],
-        title: ['required']
-    };
+/* Create */
+router.post('/', function (req, res) {
+  var body  = req.body;
+  var rules = {
+    id: ['required'],
+    title: ['required']
+  };
 
-    req.GrydValidateBody(rules, function (err) {
+  req.GrydValidateBody(rules, function (err) {
+    if (err) {
+      res.failure('E002', err);
+    } else {
+      var <%=names.lowSingle %> = new <%=names.capSingle %>({
+        id: body.id,
+        title: body.title
+      });
+      <%=names.lowSingle %>.save(function (err, <%=names.lowSingle %>) {
         if (err) {
-            res.json(err);
+          res.mFailure(err);
         } else {
-            var <%=names.lowSingle %> = new <%=names.capSingle %>({
-                id: body.id,
-                title: body.title
-            });
-            <%=names.lowSingle %>.save(function (err, <%=names.lowSingle %>) {
-                if (err) {
-                    res.json(err);
-                } else {
-                    res.json(<%=names.lowSingle %>)
-                }
-            })
+          res.success(<%=names.lowSingle %>);
         }
-    });
-};
+      });
+    }
+  });
+});
 <% } if(opts.update) {%>
-exports.update = function (req, res) {
-    var id    = req.params['id'];
-    var body  = req.body;
-    var rules = {
-        id: ['required'],
-        title: ['required']
-    };
+/* Update */
+router.put('/:id', function (req, res) {
+  var id    = req.params['id'];
+  var body  = req.body;
+  var rules = {
+    id: ['required'],
+    title: ['required']
+  };
 
-    req.GrydValidateBody(rules, function (err) {
+  req.GrydValidateBody(rules, function (err) {
+    if (err) {
+      res.failure('E002', err);
+    } else {
+      <%=names.capSingle %>.findOne({id: id}, function (err, <%=names.lowSingle %>) {
         if (err) {
-            res.json(err);
+          res.mFailure(err);
         } else {
-            <%=names.capSingle %>.findOne({id: id}, function (err, <%=names.lowSingle %>) {
-                if (err) {
-                    res.json(err);
-                } else {
-                    <%=names.lowSingle %>.set('id', body.id);
-                    <%=names.lowSingle %>.set('title', body.title);
-                    <%=names.lowSingle %>.save(function (err, <%=names.lowSingle %>) {
-                        if (err) {
-                            res.json(err);
-                        } else {
-                            res.json(<%=names.lowSingle %>)
-                        }
-                    });
-                }
-            });
+          <%=names.lowSingle %>.set('id', body.id);
+          <%=names.lowSingle %>.set('title', body.title);
+          <%=names.lowSingle %>.save(function (err, <%=names.lowSingle %>) {
+            if (err) {
+              res.mFailure(err);
+            } else {
+              res.success(<%=names.lowSingle %>);
+            }
+          });
         }
-    });
-};
+      });
+    }
+  });
+});
 <% } if(opts.remove) {%>
-exports.remove = function (req, res) {
-    var id = req.params['id'];
-    <%=names.capSingle %>.remove({id:id}, function (err, num) {
-        if (err) {
-            res.json(err);
-        } else if (num && num.result.n >= 1) {
-            res.json({success: true});
-        } else {
-            res.json({success: false});
-        }
-    });
-};
+/* Remove */
+router.delete('/:id', function (req, res) {
+  var id = req.params['id'];
+  <%=names.capSingle %>.remove({id:id}, function (err, num) {
+    if (err) {
+      res.mFailure(err);
+    } else if (num && num.result.n >= 1) {
+      res.success();
+    } else {
+      res.failure('E005');
+    }
+  });
+});
 <% } %>
