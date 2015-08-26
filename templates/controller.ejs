@@ -1,4 +1,5 @@
 var <%=names.capSingle %> = $G("Mod").<%=names.capSingle %>;
+var router = $G("Express").Router();
 <% if(opts.list) {%>
 /* List */
 router.get('/', function (req, res) {
@@ -98,3 +99,4 @@ router.delete('/:id', function (req, res) {
   });
 });
 <% } %>
+module.exports = router;
