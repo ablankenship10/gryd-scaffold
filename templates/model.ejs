@@ -1,5 +1,5 @@
 var schema = $G("DB").Schema({<% for(var i = 0; i < fields.length; i++){ %>
-    <%=fields[i].name %>: <%=fields[i].value%><%=(i < fields.length-1)?",":"";%><% } %>
+  <%=fields[i].name %>: <%=fields[i].value%><%=(i < fields.length-1)?",":"";%><% } %>
 });
 
 schema.set('versionKey', false);
